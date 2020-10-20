@@ -1,4 +1,4 @@
-# 🤘 Vue Material Admin 
+# 🤘 Vue&vuetify
 
 Project  for I-net
 
