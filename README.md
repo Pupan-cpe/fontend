@@ -30,7 +30,7 @@ We have implemented some basic pages, so you can see our template in action.
 
 1. Clone repository
 ```shell
-git clone https://github.com/flatlogic/material-vue.git
+git clone https://github.com/Pupan-cpe/fontend.git
 ```
 2. Get in the project folder
 ```shell
