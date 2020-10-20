@@ -12,19 +12,7 @@ Project  for I-net
 * Backend Nodejs&mongoDB 
 * Restfull-API
 
-## Pages
-We have implemented some basic pages, so you can see our template in action.
 
-* Dashboard sample
-* Typography
-* Tables
-* Notifications
-* Charts
-* Icons
-* Maps
-* Chat
-* Login
-* Error page
 
 ## Instalation 
 
