@@ -2,16 +2,7 @@
   <v-footer class="px-0 mt-10" color="transparent">
     <v-row no-gutters>
       <div>
-        <v-btn
-              v-for="link in links"
-              :key="link.link"
-              color="primary"
-              text
-              :href="link.link"
-              class="text-capitalize ml-1 font-weight-regular"
-          >
-            {{ link.text }}
-          </v-btn>
+      
       </div>
       <div>
         © 2020 Pupan, I-net. All rights reserved.

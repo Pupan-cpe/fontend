@@ -1,127 +1,122 @@
 <template>
-  <v-container fluid>
-    <div class="tables-basic">
-      <h1 class="page-title mt-10 mb-6">Tables</h1>
-      <v-row>
-        <v-col cols="12">
-          <v-card class="employee-list mb-1">
-            <v-card-title class="pa-5 pb-3">
-              <p>Employee List</p>
-              <v-spacer></v-spacer>
-              <v-text-field
-                v-model="mock.employeeTable.search"
-                append-icon="mdi-magnify"
-                label="Search"
-                clearable
-                single-line
-                hide-details
-              ></v-text-field>
-            </v-card-title>
-            <v-data-table
-              v-model="mock.employeeTable.selected"
-              :headers="mock.employeeTable.headers"
-              :items="mock.employeeTable.employee"
-              :search="mock.employeeTable.search"
-              item-key="name"
-              show-select>
-            </v-data-table>
-          </v-card>
-        </v-col>
-        <v-col cols=12>
-          <v-card class="mb-1">
-            <v-card-title class="pa-5 pb-3">
-              <p>Material-UI Table</p>
-              <v-spacer></v-spacer>
-              <v-menu>
-                <template v-slot:activator="{ on, attrs }">
-                  <v-btn
-                    icon
-                    v-bind="attrs"
-                    v-on="on">
-                    <v-icon color="textColor">mdi-dots-vertical</v-icon>
-                  </v-btn>
-                </template>
-                <v-list>
-                  <v-list-item
-                    v-for="(item, i) in mock.menu"
-                    :key="i"
-                    @click="() => {}">
-                    <v-list-item-title>{{ item }}</v-list-item-title>
-                  </v-list-item>
-                </v-list>
-              </v-menu>
-            </v-card-title>
-            <v-simple-table>
-                <template v-slot:default>
-                  <thead>
-                  <tr>
-                    <th class="text-left pa-6">NAME</th>
-                    <th class="text-left">EMAIL</th>
-                    <th class="text-left">PRODUCT</th>
-                    <th class="text-left">PRICE</th>
-                    <th class="text-left">DATE</th>
-                    <th class="text-left">CITY</th>
-                    <th class="text-left">STATUS</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <tr v-for="item in mock.materialUITable" :key="item.name">
-                    <td class="pa-6">{{ item.name }}</td>
-                    <td>{{ item.email }}</td>
-                    <td>{{ item.product }}</td>
-                    <td>{{ item.price }}</td>
-                    <td>{{ item.date }}</td>
-                    <td>{{ item.city }}</td>
-                    <td v-if="item.status === 'Sent'">
-                      <v-chip
-                        link
-                        color="success"
-                        class="ma-2 ml-0"
-                      >
-                        Sent
-                      </v-chip>
-                    </td>
-                    <td v-else-if="item.status === 'Pending'">
-                      <v-chip
-                        link
-                        color="warning"
-                        class="ma-2 ml-0"
-                      >
-                        Pending
-                      </v-chip>
-                    </td>
-                    <td v-else-if="item.status === 'Declined'">
-                      <v-chip
-                        link
-                        color="secondary"
-                        class="ma-2 ml-0"
-                      >
-                        Declined
-                      </v-chip>
-                    </td>
-                  </tr>
-                  </tbody>
-                </template>
-              </v-simple-table>
-          </v-card>
-        </v-col>
-      </v-row>
-    </div>
-  </v-container>
+  <v-card>
+    <v-card-title>
+      <v-text-field
+        v-model="search"
+        append-icon="mdi-magnify"
+        label="Search"
+        single-line
+        hide-details
+      ></v-text-field>
+    </v-card-title>
+    <v-data-table
+      :headers="headers"
+      :items="desserts"
+      :search="search"
+    ></v-data-table>
+  </v-card>
 </template>
-
 <script>
-import mock from './mock'
-
-export default {
-  name: 'Tables',
-  data() {
-    return {
-      mock
-    }
+  export default {
+    data () {
+      return {
+        search: '',
+        headers: [
+          {
+            text: 'Dessert (100g serving)',
+            align: 'start',
+            filterable: false,
+            value: 'name',
+          },
+          { text: 'Calories', value: 'calories' },
+          { text: 'Fat (g)', value: 'fat' },
+          { text: 'Carbs (g)', value: 'carbs' },
+          { text: 'Protein (g)', value: 'protein' },
+          { text: 'Iron (%)', value: 'iron' },
+        ],
+        desserts: [
+          {
+            name: 'Frozen Yogurt',
+            calories: 159,
+            fat: 6.0,
+            carbs: 24,
+            protein: 4.0,
+            iron: '1%',
+          },
+          {
+            name: 'Ice cream sandwich',
+            calories: 237,
+            fat: 9.0,
+            carbs: 37,
+            protein: 4.3,
+            iron: '1%',
+          },
+          {
+            name: 'Eclair',
+            calories: 262,
+            fat: 16.0,
+            carbs: 23,
+            protein: 6.0,
+            iron: '7%',
+          },
+          {
+            name: 'Cupcake',
+            calories: 305,
+            fat: 3.7,
+            carbs: 67,
+            protein: 4.3,
+            iron: '8%',
+          },
+          {
+            name: 'Gingerbread',
+            calories: 356,
+            fat: 16.0,
+            carbs: 49,
+            protein: 3.9,
+            iron: '16%',
+          },
+          {
+            name: 'Jelly bean',
+            calories: 375,
+            fat: 0.0,
+            carbs: 94,
+            protein: 0.0,
+            iron: '0%',
+          },
+          {
+            name: 'Lollipop',
+            calories: 392,
+            fat: 0.2,
+            carbs: 98,
+            protein: 0,
+            iron: '2%',
+          },
+          {
+            name: 'Honeycomb',
+            calories: 408,
+            fat: 3.2,
+            carbs: 87,
+            protein: 6.5,
+            iron: '45%',
+          },
+          {
+            name: 'Donut',
+            calories: 452,
+            fat: 25.0,
+            carbs: 51,
+            protein: 4.9,
+            iron: '22%',
+          },
+          {
+            name: 'KitKat',
+            calories: 518,
+            fat: 26.0,
+            carbs: 65,
+            protein: 7,
+            iron: '6%',
+          },
+        ],
+      }
+    },
   }
-}
-
 </script>
-
-<style src="./Basic.scss" lang="scss"></style>

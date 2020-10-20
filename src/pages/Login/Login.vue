@@ -41,7 +41,7 @@
                               <v-text-field
                                   v-model="email"
                                   :rules="emailRules"
-                                  value="admin@flatlogic.com"
+                                  value="pupan.po@inet.co.th"
                                   label="Email Address"
                                   required
                               ></v-text-field>
