@@ -61,14 +61,14 @@
                           <v-form>
                             <v-col>
                               <v-text-field
-                                v-model="email"
+                                v-model="login1.email"
                                 :rules="emailRules"
                                 value="pupan.po@inet.co.th"
                                 label="Email Address"
                                 required
                               ></v-text-field>
                               <v-text-field
-                                v-model="password"
+                                v-model="login1.password"
                                 :rules="[rules.req]"
                                 type="password"
                                 label="Password"
@@ -81,7 +81,8 @@
                                 class="text-capitalize"
                                 large
                                 :disabled="
-                                  password.length === 0 || email.length === 0
+                                  login1.password.length === 0 ||
+                                    login1.email.length === 0
                                 "
                                 color="primary"
                                 @click="login"
@@ -132,17 +133,19 @@
                               <v-text-field
                                 :type="hidePassword ? 'password' : 'text'"
                                 :append-icon="
-                                  hidePassword ?   ' mdi-account-outline':' mdi-account-off'
+                                  hidePassword
+                                    ? ' mdi-account-outline'
+                                    : ' mdi-account-off'
                                 "
                                 name="password"
                                 label="Password"
                                 id="password"
-                                 :rules="[rules.req]"
+                                :rules="[rules.req]"
                                 v-model="register.password"
                                 :error="error"
                                 @click:append="hidePassword = !hidePassword"
                               />
-                            
+
                               <v-text-field
                                 append-icon=" mdi-account-circle"
                                 name="Fullname"
@@ -157,7 +160,7 @@
                               <v-btn
                                 block
                                 color="primary"
-                                 @click="validate"
+                                @click="validate"
                                 :loading="loading"
                               >
                                 Create your account</v-btn
@@ -206,6 +209,7 @@ export default {
       error: false,
       showResult: false,
       result: "",
+
       rules: {
         req: (value) => !!value || "จำเป็นต้องระบุข้อมูลให้ครบถ้วน.",
       },
@@ -215,8 +219,10 @@ export default {
           /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) ||
           "E-mail must be valid",
       ],
-      email: "pupan.po@inet.com",
-      password: "123456",
+      login1: {
+        email: "pupan.po@inet.com",
+        password: "123456",
+      },
       register: {
         userEmail: "",
         rpassword: "",
@@ -226,27 +232,76 @@ export default {
   },
 
   methods: {
+   
     login() {
-      window.localStorage.setItem("authenticated", true);
-      this.$router.push("/dashboard");
+      //  ใช้ interceptors เพื่อคอยดักข้อมูลการเชื่อมต่อเซิฟเวอร์ถ้าไม่มีการเชื่อมต่อให้แสดงผล
+      axios.interceptors.response.use(   
+        (response) => {
+          return response;
+        },
+        (error) => {
+          if (!error.response) {
+            swal(
+              "Error",
+              "ไม่สามารถติดต่อเซิฟเวอร์ได้",
+              "error"
+            );
+            console.log("Please check your internet connection.");
+          }
+
+          return Promise.reject(error);
+        }
+      );
+
+      axios
+        .post(
+          "http://127.0.0.1:3000/data",
+          // "http://172.16.112.77:8002/createNew", this.register //Jo
+          // "http://172.16.113.73:3000/api/registor/register",
+          this.login1
+        )
+        .then((res) => {
+          console.log(res.data);
+
+          console.log(res.data.ok);
+          // console.log("sxxad", this.xxx);
+          if (res.data.ok === "success") {
+            window.localStorage.setItem("authenticated", true);
+            this.$router.push("/dashboard");
+          } else {
+            swal(
+              "Error",
+              "ไม่พบข้อมูลการลงทะเบียนโปรดตรวจสอบข้อมูลการใช้งานใหม่",
+              "error"
+            );
+            console.log("Register fail");
+          }
+        });
     },
     validate() {
       if (
         this.$refs.form.validate() === false ||
-        this.register.rpassword === "" ||
+        this.register.password === "" ||
         this.register.Fullname === ""
       ) {
-        swal("Good job!", "You clicked the button!", "error");
-       
-      } else {
-        console.log(this.cryptobject.key);
-        swal("Good job!", "You clicked the button!", "success");
+        swal({
+                title: "error",
+                text: "ลงทะเบียนไม่สำเร็จกรุณากรอกข้อมูลให้ครบถ้วน",
+                icon: "error",
+                button: "ตกลง"
+              });
+              
+      }else{
+      
+      
+        // swal("Good job!", "You clicked the button!", "success");
         // console.log(typeof(encryptedText));
-
         axios
           .post(
             // "http://172.16.112.77:8002/createNew", this.register //Jo
-            "http://172.16.113.73:3000/api/registor/register",
+            // "http://172.16.113.73:3000/api/registor/register",
+                "http://127.0.0.1:3000/data", 
+            
             this.register //new
           )
           .then((res) => {
@@ -255,27 +310,26 @@ export default {
             console.log(res.data.ok);
             // console.log("sxxad", this.xxx);
             if (res.data.ok === "success") {
-              this.register = "";
-              this.$router.push("/Login");
-
-              // swal({
-              //   title: "ลงทะเบียนสำเร็จ",
-              //   // text: "ลงทะเบียนสำเร็จ",
-              //   icon: "success",
-              //   button: "ตกลง"
-              // });
+              swal({
+                title: "ลงทะเบียนสำเร็จ",
+                // text: "ลงทะเบียนสำเร็จ",
+                icon: "success",
+                button: "ตกลง"
+              });
+              this.register = ""
             } else {
               console.log("Register fail");
             }
           });
+      }
 
         console.log("pass");
-      }
+      
     },
   },
   created() {
     if (window.localStorage.getItem("authenticated") === "true") {
-      this.$router.push("/dashboard");
+      this.$router.push("/login");
     }
   },
 };
