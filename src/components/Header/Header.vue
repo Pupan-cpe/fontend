@@ -28,23 +28,7 @@
       </v-list>
     </v-menu>
     <v-menu max-width="280" offset-y bottom nudge-bottom="10" left>
-      <template v-slot:activator="{ on, attrs }">
-        <v-btn
-          @click="messageBadge ? (messageBadge = !messageBadge) : ''"
-          v-bind="attrs"
-          v-on="on"
-          style="font-size: 28px"
-          icon
-          class="mr-2"
-        >
-          <v-badge :value="messageBadge" color="warning" content="3" overlap>
-            <v-icon :color="config.light.iconColor" style="font-size: 28px">
-              mdi-email-outline</v-icon
-            >
-          </v-badge>
-        </v-btn>
-      </template>
-      
+     
     </v-menu>
     <v-menu min-width="180" offset-y bottom left nudge-bottom="10">
       <template v-slot:activator="{ on, attrs }">

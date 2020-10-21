@@ -1,5 +1,8 @@
+
 <template>
+
   <v-footer class="px-0 mt-10" color="transparent">
+   
     <v-row no-gutters>
       <div>
       

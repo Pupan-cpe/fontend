@@ -6,6 +6,9 @@ import vuetify from './plugins/vuetify'
 import * as VueGoogleMaps from 'vue2-google-maps';
 import Toast from "vue-toastification";
 import "vue-toastification/dist/index.css";
+import swal from 'sweetalert2';
+
+window.Swal = swal;
 
 Vue.use(Toast);
 

@@ -105,6 +105,7 @@ import {mapActions, mapState} from 'vuex'
           { title: 'Typography', icon: 'mdi-format-size', link: '/typography' },
           { title: 'Tables', icon: 'mdi-grid-large', link: '/tables' },
           { title: 'Notifications', icon: 'mdi-bell-outline', link: '/notifications' },
+           { title: 'Maps', icon: 'mdi-circle-small', link: '/maps'},
           {
             title: 'UI Elements',
             icon: 'mdi-image-filter-none',
