@@ -7,7 +7,9 @@ import * as VueGoogleMaps from 'vue2-google-maps';
 import Toast from "vue-toastification";
 import "vue-toastification/dist/index.css";
 import swal from 'sweetalert2';
-
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+Vue.use(VueAxios, axios)
 window.Swal = swal;
 
 Vue.use(Toast);

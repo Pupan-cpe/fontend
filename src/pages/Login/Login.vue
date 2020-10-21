@@ -8,9 +8,16 @@
             <p>Welcome To Cloud</p>
           </div>
         </v-col>
-        <v-col cols="12" lg="5" class="login-part d-flex align-center justify-center">
+        <v-col
+          cols="12"
+          lg="5"
+          class="login-part d-flex align-center justify-center"
+        >
           <v-row no-gutters>
-            <v-col cols="12" class="login-part d-flex align-center justify-center flex-column">
+            <v-col
+              cols="12"
+              class="login-part d-flex align-center justify-center flex-column"
+            >
               <div class="login-wrapper">
                 <v-tabs grow>
                   <v-tabs-slider></v-tabs-slider>
@@ -21,15 +28,30 @@
                     New User
                   </v-tab>
 
-                  <v-tab-item :value="'tab-login'" >
+                  <v-tab-item :value="'tab-login'">
                     <v-form>
                       <v-container>
                         <v-row class="flex-column">
                           <v-col>
-                            <p class="login-slogan display-2 text-center font-weight-medium my-10">Login</p>
-                            <v-btn height="45" block color="white" elevation="0" class="google text-capitalize">
-                              <v-img src="@/assets/google.svg" max-width="30" class="mr-4"></v-img>
-                              Sign in with Google</v-btn>
+                            <p
+                              class="login-slogan display-2 text-center font-weight-medium my-10"
+                            >
+                              Login
+                            </p>
+                            <v-btn
+                              height="45"
+                              block
+                              color="white"
+                              elevation="0"
+                              class="google text-capitalize"
+                            >
+                              <v-img
+                                src="@/assets/google.svg"
+                                max-width="30"
+                                class="mr-4"
+                              ></v-img>
+                              Sign in with Google</v-btn
+                            >
                           </v-col>
                           <v-col cols="12" class="d-flex align-center my-8">
                             <v-divider></v-divider>
@@ -39,32 +61,39 @@
                           <v-form>
                             <v-col>
                               <v-text-field
-                                  v-model="email"
-                                  :rules="emailRules"
-                                  value="pupan.po@inet.co.th"
-                                  label="Email Address"
-                                  required
+                                v-model="email"
+                                :rules="emailRules"
+                                value="pupan.po@inet.co.th"
+                                label="Email Address"
+                                required
                               ></v-text-field>
                               <v-text-field
-                                  v-model="password"
-                                  :rules="passRules"
-                                  type="password"
-                                  label="Password"
-                                  hint="At least 6 characters"
-                                  required
+                                v-model="password"
+                                :rules="[rules.req]"
+                                type="password"
+                                label="Password"
+                                hint="At least 6 characters"
+                                required
                               ></v-text-field>
-
                             </v-col>
                             <v-col class="d-flex justify-space-between">
                               <v-btn
-                                  class="text-capitalize"
-                                  large
-                                  :disabled="password.length === 0 || email.length === 0"
-                                  color="primary"
-                                  @click="login"
+                                class="text-capitalize"
+                                large
+                                :disabled="
+                                  password.length === 0 || email.length === 0
+                                "
+                                color="primary"
+                                @click="login"
                               >
-                                Login</v-btn>
-                              <v-btn large text class="text-capitalize primary--text">Forget Password</v-btn>
+                                Login</v-btn
+                              >
+                              <v-btn
+                                large
+                                text
+                                class="text-capitalize primary--text"
+                                >Forget Password</v-btn
+                              >
                             </v-col>
                           </v-form>
                         </v-row>
@@ -72,70 +101,87 @@
                     </v-form>
                   </v-tab-item>
 
-                  <v-tab-item :value="'tab-newUser'" >
+                  <v-tab-item :value="'tab-newUser'">
                     <v-form>
                       <v-container>
                         <v-row class="flex-column">
-
                           <v-col>
-                            <p class="login-slogan display-2 text-center font-weight-medium mt-10">Welcome!</p>
-                            <p class="login-slogan display-1 text-center font-weight-medium mb-10">Create your account</p>
+                            <p
+                              class="login-slogan display-2 text-center font-weight-medium mt-10"
+                            >
+                              Welcome!
+                            </p>
+                            <p
+                              class="login-slogan display-1 text-center font-weight-medium mb-10"
+                            >
+                              Create your account
+                            </p>
                           </v-col>
 
-                          <v-form>
+                          <v-form ref="form" v-model="valid" lazy-validation>
                             <v-col>
                               <v-text-field
-                                  v-model="createFullName"
-                                  label="Full Name"
-                                  required
-                              ></v-text-field>
+                                append-icon=" mdi-account"
+                                name="email"
+                                label="email"
+                                type="email"
+                                v-model="register.userEmail"
+                                :error="error"
+                                :rules="emailRules"
+                              />
                               <v-text-field
-                                  v-model="createEmail"
-                                  :rules="emailRules"
-                                  label="Email Address"
-                                  required
-                              ></v-text-field>
+                                :type="hidePassword ? 'password' : 'text'"
+                                :append-icon="
+                                  hidePassword ?   ' mdi-account-outline':' mdi-account-off'
+                                "
+                                name="password"
+                                label="Password"
+                                id="password"
+                                 :rules="[rules.req]"
+                                v-model="register.password"
+                                :error="error"
+                                @click:append="hidePassword = !hidePassword"
+                              />
+                            
                               <v-text-field
-                                  v-model="createPassword"
-                                  :rules="passRules"
-                                  type="password"
-                                  label="Password"
-                                  hint="At least 6 characters"
-                                  required
-                              ></v-text-field>
+                                append-icon=" mdi-account-circle"
+                                name="Fullname"
+                                label="Fullname"
+                                type="name"
+                                v-model="register.Fullname"
+                                :error="error"
+                                :rules="[rules.req]"
+                              />
                             </v-col>
                             <v-col class="d-flex justify-space-between">
                               <v-btn
-                                  large
-                                  block
-                                  :disabled="createFullName.length === 0 || createEmail.length === 0 || createPassword === 0"
-                                  color="primary"
-                                  @click="login"
+                                block
+                                color="primary"
+                                 @click="validate"
+                                :loading="loading"
                               >
-                                Create your account</v-btn>
+                                Create your account</v-btn
+                              >
                             </v-col>
                           </v-form>
 
                           <v-col cols="12" class="d-flex align-center my-4">
                             <v-divider></v-divider>
-                            <span class="px-5"> or </span>
+                            <br />
                             <v-divider></v-divider>
                           </v-col>
-
-                          <v-btn height="45" block color="white" elevation="0" class="google text-capitalize">
-                            <v-img src="@/assets/google.svg" max-width="30" class="mr-4"></v-img>
-                            Sign in with Google</v-btn>
                         </v-row>
                       </v-container>
                     </v-form>
                   </v-tab-item>
-
                 </v-tabs>
               </div>
             </v-col>
             <v-col cols="12" class="d-flex justify-center">
               <v-footer>
-                <div class="primary--text">© 2020 Pupan, Inet. All rights reserved.</div>
+                <div class="primary--text">
+                  © 2020 Pupan, Inet. All rights reserved.
+                </div>
               </v-footer>
             </v-col>
           </v-row>
@@ -146,42 +192,93 @@
 </template>
 
 <script>
+import swal from "sweetalert";
+import axios from "axios";
+export default {
+  name: "Login",
+  data() {
+    return {
+      valid: true,
+      loading: false,
+      // userEmail: "aaaa",
+      // password: "1234",
+      hidePassword: true,
+      error: false,
+      showResult: false,
+      result: "",
+      rules: {
+        req: (value) => !!value || "จำเป็นต้องระบุข้อมูลให้ครบถ้วน.",
+      },
+      emailRules: [
+        (v) => !!v || "E-mail is required",
+        (v) =>
+          /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) ||
+          "E-mail must be valid",
+      ],
+      email: "pupan.po@inet.com",
+      password: "123456",
+      register: {
+        userEmail: "",
+        rpassword: "",
+        Fullname: "",
+      },
+    };
+  },
 
-  export default {
-    name: 'Login',
-    data() {
-      return {
-        email: 'pupan.po@inet.com',
-        emailRules: [
-          v => !!v || 'E-mail is required',
-          v => /.+@.+/.test(v) || 'E-mail must be valid',
-        ],
-        createFullName: 'Pupan Pw',
-        createEmail: 'pupan.po@inet.co.th',
-        createPassword: '123456',
-        password: '123456',
-        passRules: [
-          v => !!v || 'Password is required',
-          v => v.length >= 6 || 'Min 6 characters'
-        ]
+  methods: {
+    login() {
+      window.localStorage.setItem("authenticated", true);
+      this.$router.push("/dashboard");
+    },
+    validate() {
+      if (
+        this.$refs.form.validate() === false ||
+        this.register.rpassword === "" ||
+        this.register.Fullname === ""
+      ) {
+        swal("Good job!", "You clicked the button!", "error");
+       
+      } else {
+        console.log(this.cryptobject.key);
+        swal("Good job!", "You clicked the button!", "success");
+        // console.log(typeof(encryptedText));
+
+        axios
+          .post(
+            // "http://172.16.112.77:8002/createNew", this.register //Jo
+            "http://172.16.113.73:3000/api/registor/register",
+            this.register //new
+          )
+          .then((res) => {
+            console.log(res.data);
+            this.xxx = res.data;
+            console.log(res.data.ok);
+            // console.log("sxxad", this.xxx);
+            if (res.data.ok === "success") {
+              this.register = "";
+              this.$router.push("/Login");
+
+              // swal({
+              //   title: "ลงทะเบียนสำเร็จ",
+              //   // text: "ลงทะเบียนสำเร็จ",
+              //   icon: "success",
+              //   button: "ตกลง"
+              // });
+            } else {
+              console.log("Register fail");
+            }
+          });
+
+        console.log("pass");
       }
     },
-    methods: {
-      login(){
-        window.localStorage.setItem('authenticated', true);
-        this.$router.push('/dashboard');
-      }
-    },
-    created() {
-      if (window.localStorage.getItem('authenticated') === 'true') {
-        this.$router.push('/dashboard');
-      }
+  },
+  created() {
+    if (window.localStorage.getItem("authenticated") === "true") {
+      this.$router.push("/dashboard");
     }
-  }
-
-
-
-
+  },
+};
 </script>
 
-<style src="./Login.scss" lang="scss"/>
+<style src="./Login.scss" lang="scss" />
