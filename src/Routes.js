@@ -13,6 +13,7 @@ import Charts from '@/pages/Charts/Charts'
 import Maps from '@/pages/Maps/Google'
 import Error from "@/pages/Error/Error";
 import Login from "@/pages/Login/Login";
+import Profile from "@/pages/Profile/Profile";
 
 Vue.use(Router);
 
@@ -63,6 +64,11 @@ export default new Router({
         path: 'maps',
         name: 'Maps',
         component: Maps
+      },
+      {
+        path: 'Profile',
+        name: 'Profile',
+        component: Profile
       },
     ],
   },

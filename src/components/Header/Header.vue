@@ -73,6 +73,7 @@
 </template>
 
 <script>
+
 import { mapActions, mapState } from "vuex";
 import config from "../../config";
 import Search from "@/components/Search/Search";
@@ -100,12 +101,30 @@ export default {
       },
     },
   },
+   created() {
+      var xxx = window.localStorage.getItem("authenticated")
+        if(xxx === "false"){
+         
+          this.$router.push("/login");
+         
+        }
+     
+         if(xxx == "false"){
+           console.log("exit");
+         }
+
+             
+     },
   methods: {
+
     ...mapActions(["TOGGLE_DRAWER"]),
     logOut: function() {
+      
       window.localStorage.setItem("authenticated", false);
       this.$router.push("/login");
+      
     },
+    
   },
 };
 </script>

@@ -1,9 +1,12 @@
 <template>
   <v-app>
+       <br>
     <v-container fluid class="error-page">
+         <br>
       <v-row class="logo-wrapper">
+        <br>
         <v-img src="@/assets/logo.svg" contain width="62" height="48"></v-img>
-        <span class="logo-title">Vue Material Admin</span>
+        <span class="logo-title">Probation Project</span>
       </v-row>
       <v-row class="d-flex justify-center">
         <v-col cols="8">
@@ -21,6 +24,8 @@
             >
               Back to Home
             </v-btn>
+            <br>
+            
           </div>
         </v-col>
       </v-row>

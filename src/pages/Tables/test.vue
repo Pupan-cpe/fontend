@@ -115,26 +115,23 @@
       </v-row>
     </v-layout>
     <v-card>
-      <v-card-title> </v-card-title>
-      <v-card>
-        <v-card-title>
-          <v-text-field
-            v-model="search"
-            append-icon="mdi-magnify"
-            label="Search"
-            single-line
-            hide-details
-          ></v-text-field>
-        </v-card-title>
-        <v-data-table
-          :headers="headers"
-          :items="users"
-          :search="search"
-        ></v-data-table>
-      </v-card>
-
+      <v-card-title>
+        <v-text-field
+          v-model="search"
+          append-icon="mdi-magnify"
+          label="Search"
+          single-line
+          hide-details
+        ></v-text-field>
+      </v-card-title>
+    <tr v-if="loading">LOADING MORE...</tr>
+      <tr v-for="user in users" :key="user.id">
+        <td>{{ user.id }}</td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.username }}</td>
+        <td>{{ user.email }}</td>
+      </tr>
     </v-card>
-   
   </v-container>
 </template>
 
@@ -146,20 +143,19 @@ import Swal from "sweetalert";
 export default {
   data() {
     return {
-      search: '',
-        headers: [
-          {
-            text: 'id',
-            align: 'start',
-            filterable: false,
-            value: 'id',
-          },
-          { text: 'Email', value: 'email' },
-          { text: 'Fullname', value: 'fullname' },
-          { text: 'del', value: 'del' },
+      search: "",
+      desserts: [
+        {
+          name: "Frozen Yogurt",
+          calories: 200,
+          fat: 6.0,
+          carbs: 24,
+          protein: 4.0,
+          iron: "1%",
+        },
+      ],
+ 
 
-        ],
-       
       employ: {
         name: "",
         lastname: "",
@@ -199,9 +195,8 @@ export default {
         const users = await axios.get(
           "http://172.16.113.116:3000/api/authen/table-all"
         );
-        this.users = users.data.data;
+        this.users = users.data;
         this.loading = false;
-
       } catch (err) {
         console.log(err); // handle errors here...
       }
