@@ -24,7 +24,7 @@ Vue.use(Toast);
 
 Vue.use(VueGoogleMaps, {
   load: {
-    key: 'AIzaSyB7OXmzfQYua_1LEhRdqsoYzyJOPh9hGLg',
+    key: 'AIzaSyAsphDLIXQN4AKrZ6GuHis4gMPLNj-1wl0',
   },
 });
 

@@ -1,17 +1,18 @@
 <template>
-
+  <div>
+    <v-btn color="success">Device 1</v-btn>
     <div class="mapContainer">
       <GmapMap
-        :center="{lat: -37.813179, lng: 144.950259}"
-        :zoom="12"
+        :center="{lat: 13.7478819, lng: 100.5676944}"
+        :zoom="13"
         style="width: 100%; height: inherit"
       >
         <GmapMarker
-          :position="{lat: -37.813179, lng: 144.950259}"
+          :position="{lat: 13.7478819, lng: 100.5676944}"
         />
       </GmapMap>
     </div>
-
+</div>
 </template>
 
 <script>

@@ -255,9 +255,9 @@ export default {
 
       axios
         .post(
-          // "http://127.0.0.1:3000/data",
+          "http://127.0.0.1:3000/data",
           // "http://172.16.112.77:8002/createNew", this.register //Jo
-           "http://172.16.113.116:3000/api/authen/login/",
+          //  "http://172.16.113.116:3000/api/authen/login/",
           this.login1
         )
         .then((res) => {
@@ -300,7 +300,8 @@ export default {
           .post(
             // "http://172.16.112.77:8002/createNew", this.register //Jo
             // "http://172.16.113.73:3000/api/registor/register",
-                "http://172.16.113.116:3000/api/authen/register/", 
+                // "http://172.16.113.116:3000/api/authen/register/", 
+                "http://127.0.0.1:3000/data",
             
             this.register //new
           )
