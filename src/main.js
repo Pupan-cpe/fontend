@@ -24,7 +24,7 @@ Vue.use(Toast);
 
 Vue.use(VueGoogleMaps, {
   load: {
-    key: 'AIzaSyAsphDLIXQN4AKrZ6GuHis4gMPLNj-1wl0',
+    key: 'AIzaSyAsphDLIXQN4AKrZ6GuHis4gMPLNjRjehdhevdvebebeb-1wl0',
   },
 });
 
@@ -32,6 +32,6 @@ Vue.config.productionTip = false
 
 new Vue({
   vuetify,
-  router,
+  router, 
   render: h => h(App), store
 }).$mount('#app')
