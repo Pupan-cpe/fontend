@@ -27,13 +27,13 @@
                 <v-row>
                   <v-col cols="12" sm="6" md="4">
                     <v-text-field
-                      v-model="doh.userEmail"
+                      v-model="email1"
                       label="email"
                     ></v-text-field>
                   </v-col>
                    <v-col cols="12" sm="6" md="4">
                     <v-text-field
-                      v-model="doh.Fullname"
+                      v-model="fullname1"
                       label="Fullname"
                     ></v-text-field>
                   </v-col>
@@ -97,8 +97,8 @@ export default {
   data: () => ({
     users: [],
     doh:{
-      userEmail:"",
-      Fullname:""
+      fullname1:"",
+      email1:""
 
     },
     loading: false,
@@ -162,7 +162,6 @@ export default {
   },
 
   methods: {
-    
  
   deleteData: function() {
         axios.delete('http://192.168.1.138:3000/api/authen/delete/'+ this.editedItem.id)
@@ -178,13 +177,12 @@ export default {
       },
 
       editdata: function() {
-        var myJSON = JSON.stringify(this.doh);
-          console.log(myJSON);
-          console.log(typeof(myJSON));
         axios.post('http://192.168.1.138:3000/api/authen/update/'+ this.editedItem.id ,this.doh )
         .then(res => {
-          console.log(this.myJSON);
-          
+          console.log(this.doh);
+          var myJSON = JSON.stringify(this.doh);
+          console.log(myJSON);
+          console.log(typeof(this.editedItem));
          if(res.data.status ===  "true"){
            swal("อัพเดทสำเร็จ" ,"", "success");
            

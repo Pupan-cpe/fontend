@@ -224,8 +224,8 @@
               </v-row>
             </v-card-text>
           </v-card>
-        </v-col>
-        <v-col cols=12>
+        </v-col> 
+        <v-col cols=12>    <!---- -->
           <v-card class="mx-1 mb-1">
               <v-card-title class="pa-4 pb-0">
                 <v-row no-gutters>
