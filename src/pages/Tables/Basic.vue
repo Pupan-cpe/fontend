@@ -165,7 +165,7 @@ export default {
     
  
   deleteData: function() {
-        axios.delete('http://192.168.1.138:3000/api/authen/delete/'+ this.editedItem.id)
+        axios.delete('http://192.168.1.132:3000/api/authen/delete/'+ this.editedItem.id)
         .then(res => {
           
          if(res.data.status ===  "true"){
@@ -181,7 +181,7 @@ export default {
         var myJSON = JSON.stringify(this.doh);
           console.log(myJSON);
           console.log(typeof(myJSON));
-        axios.post('http://192.168.1.138:3000/api/authen/update/'+ this.editedItem.id ,this.doh )
+        axios.post('http://192.168.1.132:3000/api/authen/update/'+ this.editedItem.id ,this.doh )
         .then(res => {
           console.log(this.myJSON);
           
@@ -202,7 +202,7 @@ export default {
       // this.loading = true;
       try {
         const users = await axios.get(
-          "http://192.168.1.138:3000/api/authen/table-all"
+          "http://192.168.1.132:3000/api/authen/table-all"
         );
         this.users = users.data.data;
         

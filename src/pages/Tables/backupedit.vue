@@ -154,7 +154,7 @@ export default {
      this.getUsers();
     this.setIntervalId = setInterval(() => {
       this.getUsers();
-    }, 10000);
+    }, 1000);
  
   },
    beforeDestroy() {
@@ -200,7 +200,7 @@ export default {
       // this.loading = true;
       try {
         const users = await axios.get(
-          "http://192.168.1.138:3000/api/authen/table-all"
+          "http://192.168.1.132:3000/api/authen/table-all"
         );
         this.users = users.data.data;
         
