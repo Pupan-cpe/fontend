@@ -1,6 +1,7 @@
 <template v-slot:activator="{ dragging: isDragging }">
   <v-container fluid grid-list-xl>
     <v-layout row wrap>
+       <img src="{{ url_for('video_feed') }}">
       <v-btn style=" margin: 11px" color="primary" dark @click="dialog = true">
         เพิ่มพนักงาน
       </v-btn>
