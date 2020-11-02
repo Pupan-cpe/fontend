@@ -102,7 +102,7 @@ import {mapActions, mapState} from 'vuex'
       return {
         items: [
           { title: 'Dashboard', icon: 'mdi-home', link: '/dashboard' },
-          { title: 'Typography', icon: 'mdi-format-size', link: '/typography' },
+          { title: 'Camera', icon: ' mdi-video', link: '/typography' },
           { title: 'Tables', icon: 'mdi-grid-large', link: '/tables' },
           { title: 'Notifications', icon: 'mdi-bell-outline', link: '/notifications' },
            { title: 'Maps', icon: 'mdi-circle-small', link: '/maps'},

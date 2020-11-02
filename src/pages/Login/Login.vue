@@ -255,7 +255,7 @@ export default {
 
       axios
         .post(
-          "http://127.0.0.1:3000/data",
+          "http://192.168.1.111:3000/data",
           // "http://172.16.112.77:8002/createNew", this.register //Jo
           //  "http://192.168.1.132:3000/api/authen/login/",
           this.login1
