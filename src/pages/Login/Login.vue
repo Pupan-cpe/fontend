@@ -39,6 +39,7 @@
                               Login
                             </p>
                             <v-btn
+                            @click="google"
                               height="45"
                               block
                               color="white"
@@ -183,7 +184,7 @@
             <v-col cols="12" class="d-flex justify-center">
               <v-footer>
                 <div class="primary--text">
-                  © 2020 Pupan, Inet. All rights reserved.
+                  © 2020 Pupan, Thanyawat, Inet. All rights reserved.
                 </div>
               </v-footer>
             </v-col>
@@ -255,9 +256,10 @@ export default {
 
       axios
         .post(
-          "http://192.168.1.111:3000/data",
+          // "http://192.168.1.111:3000/data",
           // "http://172.16.112.77:8002/createNew", this.register //Jo
-          //  "http://192.168.1.132:3000/api/authen/login/",
+      "http://127.0.0.1:3000/data"  ,       
+         //  "http://192.168.1.132:3000/api/authen/login/",
           this.login1
         )
         .then((res) => {
@@ -277,6 +279,9 @@ export default {
             console.log("Register fail");
           }
         });
+    },
+    google(){
+     swal("Comming Soon!");
     },
     validate() {
       if (
@@ -301,7 +306,7 @@ export default {
             // "http://172.16.112.77:8002/createNew", this.register //Jo
             // "http://172.16.113.73:3000/api/registor/register",
                 // "http://192.168.1.132:3000/api/authen/register/", 
-                // "http://127.0.0.1:3000/data",
+                "http://127.0.0.1:3000/data",
                 
             
             this.register //new
@@ -320,6 +325,12 @@ export default {
               });
               this.register = ""
             } else {
+               swal({
+                title: "ลงทะเบียนไม่สำเร็จ",
+                // text: "ลงทะเบียนสำเร็จ",
+                icon: "error",
+                button: "ตกลง"
+              });
               console.log("Register fail");
             }
           });

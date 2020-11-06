@@ -101,22 +101,22 @@ import {mapActions, mapState} from 'vuex'
     data(){
       return {
         items: [
-          { title: 'Dashboard', icon: 'mdi-home', link: '/dashboard' },
-          { title: 'Camera', icon: ' mdi-video', link: '/typography' },
-          { title: 'Tables', icon: 'mdi-grid-large', link: '/tables' },
-          { title: 'Notifications', icon: 'mdi-bell-outline', link: '/notifications' },
-           { title: 'Maps', icon: 'mdi-circle-small', link: '/maps'},
-            { title: 'Profile', icon: '  mdi-account-box', link: '/Profile'},
+          { title: 'Data Table', icon: 'mdi-table', link: '/dashboard' },
+          { title: 'LiveVideo', icon: ' mdi-video', link: '/typography' },
+          { title: 'Manage User', icon: 'mdi-face', link: '/tables' },
+          { title: 'Picture', icon: 'mdi-image', link: '/notifications' },
+          //  { title: 'Maps', icon: 'mdi-circle-small', link: '/maps'},
+            // { title: 'Profile', icon: '  mdi-account-box', link: '/Profile'},
           {
-            title: 'UI Elements',
-            icon: 'mdi-image-filter-none',
+            // title: 'UI Elements',
+            // icon: 'mdi-image-filter-none',
             link: '/icons',
             model: false,
-            children: [
-              { title: 'Icons', icon: 'mdi-circle-small', link: '/icons'},
-              { title: 'Charts', icon: 'mdi-circle-small', link: '/charts'},
-              { title: 'Maps', icon: 'mdi-circle-small', link: '/maps'},
-            ],
+            // children: [
+            //   { title: 'Icons', icon: 'mdi-circle-small', link: '/icons'},
+            //   { title: 'Charts', icon: 'mdi-circle-small', link: '/charts'},
+            //   { title: 'Maps', icon: 'mdi-circle-small', link: '/maps'},
+            // ],
           },
          
 

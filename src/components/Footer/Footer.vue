@@ -8,7 +8,7 @@
       
       </div>
       <div>
-        © 2020 Pupan, I-net. All rights reserved.
+        © 2020 Pupan,Thanyawat I-net. All rights reserved.
         <v-btn
                 v-for="icon in icons"
                 :key="icon.icon"
